@@ -37,7 +37,7 @@ public class OrderService {
 
 
 
-//knk hep şuna düşüyor ya  NERES,NE
+
     public ResponseEntity<Map<REnum,Object>> save(){
         Map<REnum,Object> hashMap= new LinkedHashMap<>();
         Orders orders = new Orders();
