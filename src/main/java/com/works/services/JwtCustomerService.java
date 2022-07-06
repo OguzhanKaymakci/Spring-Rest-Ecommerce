@@ -55,6 +55,7 @@ public class JwtCustomerService implements UserDetailsService {
             System.out.println("-222");
             jwtCustomer.setPassword(encoder().encode(jwtCustomer.getPassword()));
             JwtCustomer customer= jwtCustomerRepository.save(jwtCustomer);
+            hm.put(REnum.message,"login successful");
             hm.put(REnum.status,true);
             hm.put(REnum.result,customer);
             return new ResponseEntity<>(hm, HttpStatus.OK);
@@ -140,20 +141,34 @@ public class JwtCustomerService implements UserDetailsService {
     }
 
 
-    public  ResponseEntity auth ( Login login){ //hocanınkinin aynısı knk hiç ellemedim sırayla eklicen düzenleyip
-        Map<REnum,Object> hashMap = new LinkedHashMap<>();
+    public  ResponseEntity auth ( Login login){
+        Map<REnum,Object> hm = new LinkedHashMap<>();
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     login.getUsername(),login.getPassword()));
             UserDetails userDetails=loadUserByUsername(login.getUsername());
             String jwt= jwtUtil.generateToken(userDetails);
-            hashMap.put(REnum.status,true);
-            hashMap.put(REnum.jwt,jwt);
-            return new ResponseEntity(hashMap,HttpStatus.OK);
+            JwtCustomer customer= (JwtCustomer) httpSession.getAttribute("customer");
+            Admin admin= (Admin) httpSession.getAttribute("admin");
+
+            if (admin==null && customer!=null){
+                hm.put(REnum.status,true);
+                hm.put(REnum.message,"login successful");
+                hm.put(REnum.result,customer);
+                hm.put(REnum.jwt,jwt);
+                return new ResponseEntity(hm,HttpStatus.OK);
+            }else {
+                hm.put(REnum.status,true);
+                hm.put(REnum.message,"login successful");
+                hm.put(REnum.result,admin);
+                hm.put(REnum.jwt,jwt);
+                return new ResponseEntity(hm,HttpStatus.OK);
+            }
+
         }catch (Exception ex){
-            hashMap.put(REnum.status,false);
-            hashMap.put(REnum.error,ex.getMessage());
-            return new ResponseEntity(hashMap,HttpStatus.NOT_ACCEPTABLE);
+            hm.put(REnum.status,false);
+            hm.put(REnum.error,ex.getMessage());
+            return new ResponseEntity(hm,HttpStatus.OK);
         }
 
 

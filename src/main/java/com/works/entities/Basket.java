@@ -12,8 +12,7 @@ public class Basket extends Base{
     private Long bid;
 
 
-    //kim ne kadar alıyor
-    //sadece satın alma ile alakalı
+
 
 
     @ManyToOne()

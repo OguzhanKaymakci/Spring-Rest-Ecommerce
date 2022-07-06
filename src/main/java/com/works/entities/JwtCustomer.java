@@ -39,14 +39,5 @@ public class JwtCustomer{
     @JoinColumn(name = "role_Id",referencedColumnName = "id")
     private Role roles;
 
-/*    @JsonIgnore
-    @OneToMany(mappedBy = "customer")//onetomany e gerek var mı
 
-    List<Orders> orders;//baskette product listesi*/
-
-    /*•	Kayıt
-
-o	Telefon (Valid – 50 karakter)
-o	Şifre (Valid – en az 5 karakter en fazla 10 karakter, büyük küçük harf rakam ve özel karakter ile sınırlandırılmalıdır.)
-*/
 }

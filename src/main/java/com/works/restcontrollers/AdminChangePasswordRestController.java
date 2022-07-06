@@ -20,7 +20,7 @@ public class AdminChangePasswordRestController {
     @PostMapping("/change/password")
 
     public ResponseEntity changepassword(@RequestParam String oldPwd, @RequestParam String pwd, @RequestParam String confirmPwd){
-        System.out.println("111111111111111111");
+
         return adminChangePasswordService.changePassword(oldPwd,pwd, confirmPwd);
     }
 }

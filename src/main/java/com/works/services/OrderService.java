@@ -36,34 +36,7 @@ public class OrderService {
 
 
 
-/*    public ResponseEntity<Map<REnum,Object>> save(){
-        Map<REnum,Object> hm= new LinkedHashMap<>();
-        Orders orders= new Orders();
-        int sum=0;
-        List<Basket> baskets= basketRepository.findByCustomer_EmailEqualsIgnoreCaseAndStatusFalse(orders.getCustomer().getEmail());
-        if (baskets.size()>0){
-            orders.setCustomer(baskets.get(0).getCustomer());//order= customer
-            orders.setBaskets(baskets);//basket
-            for (Basket item: baskets
-                 ) {
-                sum = (int) (sum+item.getProduct().getPrice()*item.getQuantity());
-                Optional<Basket> optionalBasket= basketRepository.findById(item.getBid());
-                optionalBasket.get().setStatus(true);
-                basketRepository.saveAndFlush(optionalBasket.get());
-            }
-            orders.setTotal(sum);
-            ordersRepository.save(orders);
-            hm.put(REnum.status,true);
-            hm.put(REnum.result,orders);
 
-            return new ResponseEntity<>(hm, HttpStatus.OK);
-        }else {
-            hm.put(REnum.status,false);
-            hm.put(REnum.message,"orders add error");
-
-            return new ResponseEntity<>(hm, HttpStatus.BAD_REQUEST);
-        }
-    }*/
 //knk hep şuna düşüyor ya  NERES,NE
     public ResponseEntity<Map<REnum,Object>> save(){
         Map<REnum,Object> hashMap= new LinkedHashMap<>();
@@ -140,11 +113,11 @@ public class OrderService {
     }
 
 
-    @Bean
+    /*@Bean
 
     public CacheManager cacheManager(){
-        return new ConcurrentMapCacheManager();//kızarmaması için cach menager
-    }
+        return new ConcurrentMapCacheManager();
+    }*/
 }
 
-}
+

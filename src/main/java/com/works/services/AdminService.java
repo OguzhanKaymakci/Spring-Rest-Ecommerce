@@ -25,7 +25,6 @@ public class AdminService {
 
     public ResponseEntity<Map<REnum,Object>> register(Admin admin){
         Map<REnum,Object> hm= new LinkedHashMap<>();
-        //e mail var mı diye sor
         Optional<Admin> optionalAdmin= adminRepository.findByEmailEqualsIgnoreCase(admin.getEmail());
         //Optional<Admin> optionalAdmin= Optional.ofNullable(adminRepository.findByEmailEqualsIgnoreCase(admin.getEmail()));
         //Optional<JwtCustomer> optionalJwtCustomer= Optional.ofNullable(jwtCustomerRepository.findByEmailEqualsIgnoreCase(jwtCustomer.getEmail()));
@@ -44,7 +43,7 @@ public class AdminService {
     }
 
 
-    public Collection roles(Role rolex ) { //biz şimdi many to one  yaptık ya o yüzden collecyion istiyo loadbydaki rolers methodyu
+    public Collection roles(Role rolex ) {
         List<GrantedAuthority> ls = new ArrayList<>();
 
         ls.add( new SimpleGrantedAuthority( rolex.getName() ));

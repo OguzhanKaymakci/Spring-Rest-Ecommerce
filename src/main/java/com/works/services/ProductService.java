@@ -4,6 +4,7 @@ package com.works.services;
 import com.works.entities.Product;
 import com.works.repositories.ProductRepository;
 import com.works.utils.REnum;
+import org.hibernate.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -56,14 +57,6 @@ public class ProductService {
         }
     }
 
-
-/*    public ResponseEntity<Map<REnum,Object>> listById(Long cid){
-        Map<REnum,Object> hm = new LinkedHashMap<>();
-        Optional<Product> ls =productRepository.findByCidEquals(cid);
-        hm.put(REnum.status,true);
-        hm.put(REnum.result,ls);
-        return new ResponseEntity<>(hm,HttpStatus.OK);
-    }*/
 
 
     public ResponseEntity<Map<REnum,Object>> delete(Long pid){

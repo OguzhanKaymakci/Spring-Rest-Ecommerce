@@ -26,12 +26,6 @@ public class Product extends Base{
     private Category category;
 
 
-/*    @OneToMany(mappedBy = "product")
-    private List<Basket> baskets;//baskette product listesi
 
-
-    @ManyToOne
-    @JoinColumn(name = "order_id",referencedColumnName = "oid")
-    private Orders orders;*/
 
 }
